@@ -124,21 +124,10 @@ static struct tc_configuration _tcs[] = {
     TC_CONFIGURATION(7),
 #endif
 };
-/**
- * \brief Set of pointer to hal_timer helper functions
- */
-static struct _timer_hpl_interface _tc_timer_functions = {
-    _tc_timer_init,
-    _tc_timer_deinit,
-    _tc_timer_start,
-    _tc_timer_stop,
-    _tc_timer_set_period,
-    _tc_timer_get_period,
-    _tc_timer_is_started,
-    _tc_timer_set_irq,
-};
 
 static struct _timer_device *_tc0_dev = NULL;
+
+static struct _timer_device *_tc1_dev = NULL;
 
 static int8_t         get_tc_index(const void *const hw);
 static void           _tc_init_irq_param(const void *const hw, void *dev);
@@ -146,7 +135,7 @@ static inline uint8_t _get_hardware_offset(const void *const hw);
 /**
  * \brief Initialize TC
  */
-int32_t _tc_timer_init(struct _timer_device *const device, void *const hw)
+int32_t _timer_init(struct _timer_device *const device, void *const hw)
 {
 	int8_t i = get_tc_index(hw);
 
@@ -192,7 +181,7 @@ int32_t _tc_timer_init(struct _timer_device *const device, void *const hw)
 /**
  * \brief De-initialize TC
  */
-void _tc_timer_deinit(struct _timer_device *const device)
+void _timer_deinit(struct _timer_device *const device)
 {
 	void *const hw = device->hw;
 	int8_t      i  = get_tc_index(hw);
@@ -206,21 +195,21 @@ void _tc_timer_deinit(struct _timer_device *const device)
 /**
  * \brief Start hardware timer
  */
-void _tc_timer_start(struct _timer_device *const device)
+void _timer_start(struct _timer_device *const device)
 {
 	hri_tc_set_CTRLA_ENABLE_bit(device->hw);
 }
 /**
  * \brief Stop hardware timer
  */
-void _tc_timer_stop(struct _timer_device *const device)
+void _timer_stop(struct _timer_device *const device)
 {
 	hri_tc_clear_CTRLA_ENABLE_bit(device->hw);
 }
 /**
  * \brief Set timer period
  */
-void _tc_timer_set_period(struct _timer_device *const device, const uint32_t clock_cycles)
+void _timer_set_period(struct _timer_device *const device, const uint32_t clock_cycles)
 {
 	void *const hw = device->hw;
 
@@ -235,7 +224,7 @@ void _tc_timer_set_period(struct _timer_device *const device, const uint32_t clo
 /**
  * \brief Retrieve timer period
  */
-uint32_t _tc_timer_get_period(const struct _timer_device *const device)
+uint32_t _timer_get_period(const struct _timer_device *const device)
 {
 	void *const hw = device->hw;
 
@@ -252,7 +241,7 @@ uint32_t _tc_timer_get_period(const struct _timer_device *const device)
 /**
  * \brief Check if timer is running
  */
-bool _tc_timer_is_started(const struct _timer_device *const device)
+bool _timer_is_started(const struct _timer_device *const device)
 {
 	return hri_tc_get_CTRLA_ENABLE_bit(device->hw);
 }
@@ -262,7 +251,7 @@ bool _tc_timer_is_started(const struct _timer_device *const device)
  */
 struct _timer_hpl_interface *_tc_get_timer(void)
 {
-	return &_tc_timer_functions;
+	return NULL;
 }
 
 /**
@@ -277,7 +266,7 @@ struct _pwm_hpl_interface *_tc_get_pwm(void)
  *
  * \param[in] hw The pointer to hardware instance
  */
-void _tc_timer_set_irq(struct _timer_device *const device)
+void _timer_set_irq(struct _timer_device *const device)
 {
 	void *const hw = device->hw;
 	int8_t      i  = get_tc_index(hw);
@@ -309,6 +298,14 @@ void TC0_Handler(void)
 }
 
 /**
+ * \brief TC interrupt handler
+ */
+void TC1_Handler(void)
+{
+	tc_interrupt_handler(_tc1_dev);
+}
+
+/**
  * \internal Retrieve TC index
  *
  * \param[in] hw The pointer to hardware instance
@@ -337,6 +334,9 @@ static void _tc_init_irq_param(const void *const hw, void *dev)
 {
 	if (hw == TC0) {
 		_tc0_dev = (struct _timer_device *)dev;
+	}
+	if (hw == TC1) {
+		_tc1_dev = (struct _timer_device *)dev;
 	}
 }
 

@@ -58,7 +58,7 @@
 // <i> time segment before sample point
 // <id> can_btp_tseg1
 #ifndef CONF_CAN0_BTP_TSEG1
-#define CONF_CAN0_BTP_TSEG1 2
+#define CONF_CAN0_BTP_TSEG1 3
 #endif
 
 // <o> time segment after sample point <1-128>
@@ -97,7 +97,7 @@
 // <i> Fast time segment before sample point
 // <id> can_dbtp_dtseg1
 #ifndef CONF_CAN0_DBTP_DTSEG1
-#define CONF_CAN0_DBTP_DTSEG1 2
+#define CONF_CAN0_DBTP_DTSEG1 3
 #endif
 
 // <o> Data time segment after sample point <1-16>
@@ -124,7 +124,7 @@
 // <1=> overwrite mode
 // <id> can_rxf0c_f0om
 #ifndef CONF_CAN0_RXF0C_F0OM
-#define CONF_CAN0_RXF0C_F0OM 0
+#define CONF_CAN0_RXF0C_F0OM 1
 #endif
 
 // <o> Watermark <0-64>
@@ -138,7 +138,7 @@
 // <i> Number of Rx FIFO 0 element
 // <id> can_rxf0c_f0s
 #ifndef CONF_CAN0_RXF0C_F0S
-#define CONF_CAN0_RXF0C_F0S 64
+#define CONF_CAN0_RXF0C_F0S 16
 #endif
 
 // <o> Data Field Size
@@ -153,7 +153,7 @@
 // <7=> 64 byte data field.
 // <id> can_rxesc_f0ds
 #ifndef CONF_CAN0_RXESC_F0DS
-#define CONF_CAN0_RXESC_F0DS 0
+#define CONF_CAN0_RXESC_F0DS 7
 #endif
 
 /* Bytes size for CAN FIFO 0 element, plus 8 bytes for R0,R1 */
@@ -265,7 +265,7 @@
 // <i> Number of Extended Message ID filter elements
 // <id> can_xidfc_lss
 #ifndef CONF_CAN0_XIDFC_LSS
-#define CONF_CAN0_XIDFC_LSS 2
+#define CONF_CAN0_XIDFC_LSS 10
 #endif
 
 // <o> Extended ID Mask <0x0000-0x1FFFFFFF>
@@ -275,7 +275,7 @@
 // <i> mask is not active.
 // <id> can_xidam_eidm
 #ifndef CONF_CAN0_XIDAM_EIDM
-#define CONF_CAN0_XIDAM_EIDM 0x0
+#define CONF_CAN0_XIDAM_EIDM 0x1fffffff
 #endif
 
 // </h>
@@ -440,7 +440,7 @@
 // <i> time segment before sample point
 // <id> can_btp_tseg1
 #ifndef CONF_CAN1_BTP_TSEG1
-#define CONF_CAN1_BTP_TSEG1 2
+#define CONF_CAN1_BTP_TSEG1 3
 #endif
 
 // <o> time segment after sample point <1-128>
@@ -479,7 +479,7 @@
 // <i> Fast time segment before sample point
 // <id> can_dbtp_dtseg1
 #ifndef CONF_CAN1_DBTP_DTSEG1
-#define CONF_CAN1_DBTP_DTSEG1 2
+#define CONF_CAN1_DBTP_DTSEG1 3
 #endif
 
 // <o> Data time segment after sample point <1-16>
@@ -520,7 +520,7 @@
 // <i> Number of Rx FIFO 0 element
 // <id> can_rxf0c_f0s
 #ifndef CONF_CAN1_RXF0C_F0S
-#define CONF_CAN1_RXF0C_F0S 64
+#define CONF_CAN1_RXF0C_F0S 16
 #endif
 
 // <o> Data Field Size
@@ -647,7 +647,7 @@
 // <i> Number of Extended Message ID filter elements
 // <id> can_xidfc_lss
 #ifndef CONF_CAN1_XIDFC_LSS
-#define CONF_CAN1_XIDFC_LSS 2
+#define CONF_CAN1_XIDFC_LSS 10
 #endif
 
 // <o> Extended ID Mask <0x0000-0x1FFFFFFF>
@@ -657,7 +657,7 @@
 // <i> mask is not active.
 // <id> can_xidam_eidm
 #ifndef CONF_CAN1_XIDAM_EIDM
-#define CONF_CAN1_XIDAM_EIDM 0x0
+#define CONF_CAN1_XIDAM_EIDM 0x1fffffff
 #endif
 
 // </h>

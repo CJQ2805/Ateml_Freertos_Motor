@@ -23,8 +23,9 @@ extern "C" {
 
 #include <hal_flash.h>
 
-#include <hal_timer.h>
 #include <hal_spi_m_sync.h>
+#include <hal_timer.h>
+#include <hpl_tc_base.h>
 #include <hal_timer.h>
 #include <hpl_tc_base.h>
 
@@ -33,8 +34,8 @@ extern "C" {
 #include <hal_can_async.h>
 
 extern struct flash_descriptor      FLASH_0;
-extern struct timer_descriptor      TIMER_0;
 extern struct spi_m_sync_descriptor SPI_0;
+extern struct timer_descriptor      TIMER_0;
 extern struct timer_descriptor      TIMER_1;
 
 extern struct wdt_descriptor       WDT_0;

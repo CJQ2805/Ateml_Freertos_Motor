@@ -2,7 +2,7 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
-APP-AFE_Task\AFE_opr.c
+APP_AFETask\AFE_opr.c
 
 atmel_start.c
 
@@ -11,6 +11,8 @@ Device_Startup\startup_samc21.c
 Device_Startup\system_samc21.c
 
 driver_init.c
+
+drv\drv_can.c
 
 examples\driver_examples.c
 
@@ -80,8 +82,6 @@ hpl\oscctrl\hpl_oscctrl.c
 
 hpl\pm\hpl_pm.c
 
-hpl\rtc\hpl_rtc.c
-
 hpl\sercom\hpl_sercom.c
 
 hpl\tc\hpl_tc.c
@@ -89,4 +89,10 @@ hpl\tc\hpl_tc.c
 hpl\wdt\hpl_wdt.c
 
 main.c
+
+RTT\SEGGER_RTT.c
+
+RTT\SEGGER_RTT_ASM_ARMv7M.S
+
+RTT\SEGGER_RTT_printf.c
 

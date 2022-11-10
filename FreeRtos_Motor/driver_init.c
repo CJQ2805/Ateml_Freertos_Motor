@@ -11,10 +11,8 @@
 #include <utils.h>
 #include <hal_init.h>
 
-#include <hpl_rtc_base.h>
-
-struct timer_descriptor      TIMER_0;
 struct spi_m_sync_descriptor SPI_0;
+struct timer_descriptor      TIMER_0;
 struct timer_descriptor      TIMER_1;
 struct can_async_descriptor  CAN_1;
 struct can_async_descriptor  CAN_0;
@@ -33,17 +31,6 @@ void FLASH_0_init(void)
 {
 	FLASH_0_CLOCK_init();
 	flash_init(&FLASH_0, NVMCTRL);
-}
-
-/**
- * \brief Timer initialization function
- *
- * Enables Timer peripheral, clocks and initializes Timer driver
- */
-static void TIMER_0_init(void)
-{
-	hri_mclk_set_APBAMASK_RTC_bit(MCLK);
-	timer_init(&TIMER_0, RTC, _rtc_get_timer());
 }
 
 void SPI_0_PORT_init(void)
@@ -106,12 +93,25 @@ void SPI_0_init(void)
  *
  * Enables Timer peripheral, clocks and initializes Timer driver
  */
-static void TIMER_1_init(void)
+static void TIMER_0_init(void)
 {
 	hri_mclk_set_APBCMASK_TC0_bit(MCLK);
 	hri_gclk_write_PCHCTRL_reg(GCLK, TC0_GCLK_ID, CONF_GCLK_TC0_SRC | (1 << GCLK_PCHCTRL_CHEN_Pos));
 
-	timer_init(&TIMER_1, TC0, _tc_get_timer());
+	timer_init(&TIMER_0, TC0, _tc_get_timer());
+}
+
+/**
+ * \brief Timer initialization function
+ *
+ * Enables Timer peripheral, clocks and initializes Timer driver
+ */
+static void TIMER_1_init(void)
+{
+	hri_mclk_set_APBCMASK_TC1_bit(MCLK);
+	hri_gclk_write_PCHCTRL_reg(GCLK, TC1_GCLK_ID, CONF_GCLK_TC1_SRC | (1 << GCLK_PCHCTRL_CHEN_Pos));
+
+	timer_init(&TIMER_1, TC1, _tc_get_timer());
 }
 
 void WDT_0_CLOCK_init(void)
@@ -169,12 +169,25 @@ void system_init(void)
 {
 	init_mcu();
 
-	FLASH_0_init();
+	// GPIO on PB15
 
-	TIMER_0_init();
+	gpio_set_pin_level(LED_PIN,
+	                   // <y> Initial level
+	                   // <id> pad_initial_level
+	                   // <false"> Low
+	                   // <true"> High
+	                   true);
+
+	// Set pin direction to output
+	gpio_set_pin_direction(LED_PIN, GPIO_DIRECTION_OUT);
+
+	gpio_set_pin_function(LED_PIN, GPIO_PIN_FUNCTION_OFF);
+
+	FLASH_0_init();
 
 	SPI_0_init();
 
+	TIMER_0_init();
 	TIMER_1_init();
 	WDT_0_init();
 	CAN_1_init();

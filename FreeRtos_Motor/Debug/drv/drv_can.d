@@ -1,5 +1,7 @@
-hpl/rtc/hpl_rtc.d hpl/rtc/hpl_rtc.o: ../hpl/rtc/hpl_rtc.c \
- ../hal/include/hpl_calendar.h ../hal/utils/include/compiler.h \
+drv/drv_can.d drv/drv_can.o: ../drv/drv_can.c ../drv/drv_can.h \
+ ../atmel_start.h ../driver_init.h ../atmel_start_pins.h \
+ ../hal/include/hal_gpio.h ../hal/include/hpl_gpio.h \
+ ../hal/utils/include/compiler.h \
  e:\microchip\ studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stddef.h \
  e:\microchip\ studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stdint.h \
  e:\microchip\ studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\stdint.h \
@@ -108,11 +110,33 @@ hpl/rtc/hpl_rtc.d hpl/rtc/hpl_rtc.o: ../hpl/rtc/hpl_rtc.c \
  ../hri/hri_systemcontrol_c21.h ../hri/hri_systick_c21.h \
  ../hri/hri_tc_c21.h ../hri/hri_tcc_c21.h ../hri/hri_tsens_c21.h \
  ../hri/hri_wdt_c21.h ../hal/utils/include/err_codes.h \
- ../hal/utils/include/utils_list.h ../hal/include/hpl_irq.h \
- ../hal/include/hpl_timer.h ../hal/include/hpl_irq.h \
- ../hal/utils/include/utils_assert.h ../Config/hpl_rtc_config.h
+ ../hpl/port/hpl_gpio_base.h ../hal/utils/include/utils_assert.h \
+ ../Config/hpl_port_config.h ../hal/include/hal_delay.h \
+ ../hal/include/hpl_irq.h ../hal/include/hpl_reset.h \
+ ../hal/include/hpl_sleep.h ../hal/include/hal_init.h \
+ ../hal/include/hpl_init.h ../hal/include/hal_io.h \
+ ../hal/include/hal_sleep.h ../hal/include/hal_flash.h \
+ ../hal/include/hpl_flash.h ../hal/include/hpl_irq.h \
+ ../hal/include/hal_spi_m_sync.h ../hal/include/hpl_spi_m_sync.h \
+ ../hal/include/hpl_spi.h ../hal/utils/include/utils.h \
+ ../hal/include/hpl_spi_sync.h ../hal/include/hal_timer.h \
+ ../hal/utils/include/utils_list.h ../hal/include/hpl_timer.h \
+ ../hpl/tc/hpl_tc_base.h ../hal/include/hpl_pwm.h \
+ ../hal/include/hal_wdt.h ../hal/include/hpl_wdt.h \
+ ../hal/include/hal_can_async.h ../hal/include/hpl_can.h \
+ ../hal/include/hpl_can_async.h
 
-../hal/include/hpl_calendar.h:
+../drv/drv_can.h:
+
+../atmel_start.h:
+
+../driver_init.h:
+
+../atmel_start_pins.h:
+
+../hal/include/hal_gpio.h:
+
+../hal/include/hpl_gpio.h:
 
 ../hal/utils/include/compiler.h:
 
@@ -378,14 +402,60 @@ E:\Microchip\ studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include/sam.h:
 
 ../hal/utils/include/err_codes.h:
 
-../hal/utils/include/utils_list.h:
-
-../hal/include/hpl_irq.h:
-
-../hal/include/hpl_timer.h:
-
-../hal/include/hpl_irq.h:
+../hpl/port/hpl_gpio_base.h:
 
 ../hal/utils/include/utils_assert.h:
 
-../Config/hpl_rtc_config.h:
+../Config/hpl_port_config.h:
+
+../hal/include/hal_delay.h:
+
+../hal/include/hpl_irq.h:
+
+../hal/include/hpl_reset.h:
+
+../hal/include/hpl_sleep.h:
+
+../hal/include/hal_init.h:
+
+../hal/include/hpl_init.h:
+
+../hal/include/hal_io.h:
+
+../hal/include/hal_sleep.h:
+
+../hal/include/hal_flash.h:
+
+../hal/include/hpl_flash.h:
+
+../hal/include/hpl_irq.h:
+
+../hal/include/hal_spi_m_sync.h:
+
+../hal/include/hpl_spi_m_sync.h:
+
+../hal/include/hpl_spi.h:
+
+../hal/utils/include/utils.h:
+
+../hal/include/hpl_spi_sync.h:
+
+../hal/include/hal_timer.h:
+
+../hal/utils/include/utils_list.h:
+
+../hal/include/hpl_timer.h:
+
+../hpl/tc/hpl_tc_base.h:
+
+../hal/include/hpl_pwm.h:
+
+../hal/include/hal_wdt.h:
+
+../hal/include/hpl_wdt.h:
+
+../hal/include/hal_can_async.h:
+
+../hal/include/hpl_can.h:
+
+../hal/include/hpl_can_async.h:

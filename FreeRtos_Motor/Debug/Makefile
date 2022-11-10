@@ -38,6 +38,9 @@ SUBDIRS :=  \
 ../examples/ \
 ../FreeRtos_Source/include \
 ../FreeRtos_Source/portable \
+../FreeRtos_Source \
+../APP_AFETask \
+../drv \
 ../hal/ \
 ../hal/documentation/ \
 ../hal/include/ \
@@ -57,22 +60,21 @@ SUBDIRS :=  \
 ../hpl/oscctrl/ \
 ../hpl/pm/ \
 ../hpl/port/ \
-../hpl/rtc/ \
 ../hpl/sercom/ \
 ../hpl/tc/ \
 ../hpl/wdt/ \
 ../hri/ \
-../FreeRtos_Source \
-../APP-AFE_Task
+../RTT
 
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
-../APP-AFE_Task/AFE_opr.c \
+../APP_AFETask/AFE_opr.c \
 ../atmel_start.c \
 ../Device_Startup/startup_samc21.c \
 ../Device_Startup/system_samc21.c \
 ../driver_init.c \
+../drv/drv_can.c \
 ../examples/driver_examples.c \
 ../freertos.c \
 ../FreeRtos_Source/list.c \
@@ -107,25 +109,28 @@ C_SRCS +=  \
 ../hpl/osc32kctrl/hpl_osc32kctrl.c \
 ../hpl/oscctrl/hpl_oscctrl.c \
 ../hpl/pm/hpl_pm.c \
-../hpl/rtc/hpl_rtc.c \
 ../hpl/sercom/hpl_sercom.c \
 ../hpl/tc/hpl_tc.c \
 ../hpl/wdt/hpl_wdt.c \
-../main.c
+../main.c \
+../RTT/SEGGER_RTT.c \
+../RTT/SEGGER_RTT_printf.c
 
 
-PREPROCESSING_SRCS += 
+PREPROCESSING_SRCS +=  \
+../RTT/SEGGER_RTT_ASM_ARMv7M.S
 
 
 ASM_SRCS += 
 
 
 OBJS +=  \
-APP-AFE_Task/AFE_opr.o \
+APP_AFETask/AFE_opr.o \
 atmel_start.o \
 Device_Startup/startup_samc21.o \
 Device_Startup/system_samc21.o \
 driver_init.o \
+drv/drv_can.o \
 examples/driver_examples.o \
 freertos.o \
 FreeRtos_Source/list.o \
@@ -160,18 +165,21 @@ hpl/nvmctrl/hpl_nvmctrl.o \
 hpl/osc32kctrl/hpl_osc32kctrl.o \
 hpl/oscctrl/hpl_oscctrl.o \
 hpl/pm/hpl_pm.o \
-hpl/rtc/hpl_rtc.o \
 hpl/sercom/hpl_sercom.o \
 hpl/tc/hpl_tc.o \
 hpl/wdt/hpl_wdt.o \
-main.o
+main.o \
+RTT/SEGGER_RTT.o \
+RTT/SEGGER_RTT_ASM_ARMv7M.o \
+RTT/SEGGER_RTT_printf.o
 
 OBJS_AS_ARGS +=  \
-APP-AFE_Task/AFE_opr.o \
+APP_AFETask/AFE_opr.o \
 atmel_start.o \
 Device_Startup/startup_samc21.o \
 Device_Startup/system_samc21.o \
 driver_init.o \
+drv/drv_can.o \
 examples/driver_examples.o \
 freertos.o \
 FreeRtos_Source/list.o \
@@ -206,18 +214,21 @@ hpl/nvmctrl/hpl_nvmctrl.o \
 hpl/osc32kctrl/hpl_osc32kctrl.o \
 hpl/oscctrl/hpl_oscctrl.o \
 hpl/pm/hpl_pm.o \
-hpl/rtc/hpl_rtc.o \
 hpl/sercom/hpl_sercom.o \
 hpl/tc/hpl_tc.o \
 hpl/wdt/hpl_wdt.o \
-main.o
+main.o \
+RTT/SEGGER_RTT.o \
+RTT/SEGGER_RTT_ASM_ARMv7M.o \
+RTT/SEGGER_RTT_printf.o
 
 C_DEPS +=  \
-APP-AFE_Task/AFE_opr.d \
+APP_AFETask/AFE_opr.d \
 atmel_start.d \
 Device_Startup/startup_samc21.d \
 Device_Startup/system_samc21.d \
 driver_init.d \
+drv/drv_can.d \
 examples/driver_examples.d \
 freertos.d \
 FreeRtos_Source/list.d \
@@ -252,18 +263,21 @@ hpl/nvmctrl/hpl_nvmctrl.d \
 hpl/osc32kctrl/hpl_osc32kctrl.d \
 hpl/oscctrl/hpl_oscctrl.d \
 hpl/pm/hpl_pm.d \
-hpl/rtc/hpl_rtc.d \
 hpl/sercom/hpl_sercom.d \
 hpl/tc/hpl_tc.d \
 hpl/wdt/hpl_wdt.d \
-main.d
+main.d \
+RTT/SEGGER_RTT.d \
+RTT/SEGGER_RTT_ASM_ARMv7M.d \
+RTT/SEGGER_RTT_printf.d
 
 C_DEPS_AS_ARGS +=  \
-APP-AFE_Task/AFE_opr.d \
+APP_AFETask/AFE_opr.d \
 atmel_start.d \
 Device_Startup/startup_samc21.d \
 Device_Startup/system_samc21.d \
 driver_init.d \
+drv/drv_can.d \
 examples/driver_examples.d \
 freertos.d \
 FreeRtos_Source/list.d \
@@ -298,11 +312,13 @@ hpl/nvmctrl/hpl_nvmctrl.d \
 hpl/osc32kctrl/hpl_osc32kctrl.d \
 hpl/oscctrl/hpl_oscctrl.d \
 hpl/pm/hpl_pm.d \
-hpl/rtc/hpl_rtc.d \
 hpl/sercom/hpl_sercom.d \
 hpl/tc/hpl_tc.d \
 hpl/wdt/hpl_wdt.d \
-main.d
+main.d \
+RTT/SEGGER_RTT.d \
+RTT/SEGGER_RTT_ASM_ARMv7M.d \
+RTT/SEGGER_RTT_printf.d
 
 OUTPUT_FILE_PATH +=FreeRtos_Motor.elf
 
@@ -320,311 +336,325 @@ LINKER_SCRIPT_DEP+=  \
 
 
 # AVR32/GNU C Compiler
-APP-AFE_Task/AFE_opr.o: ../APP-AFE_Task/AFE_opr.c
+APP_AFETask/AFE_opr.o: ../APP_AFETask/AFE_opr.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 ./atmel_start.o: .././atmel_start.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Device_Startup/startup_samc21.o: ../Device_Startup/startup_samc21.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Device_Startup/system_samc21.o: ../Device_Startup/system_samc21.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 ./driver_init.o: .././driver_init.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+drv/drv_can.o: ../drv/drv_can.c
+	@echo Building file: $<
+	@echo Invoking: ARM/GNU C Compiler : 6.3.1
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 examples/driver_examples.o: ../examples/driver_examples.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 ./freertos.o: .././freertos.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 FreeRtos_Source/list.o: ../FreeRtos_Source/list.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 FreeRtos_Source/portable/heap_4.o: ../FreeRtos_Source/portable/heap_4.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 FreeRtos_Source/portable/port.o: ../FreeRtos_Source/portable/port.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 FreeRtos_Source/queue.o: ../FreeRtos_Source/queue.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 FreeRtos_Source/tasks.o: ../FreeRtos_Source/tasks.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 FreeRtos_Source/timers.o: ../FreeRtos_Source/timers.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 hal/src/hal_atomic.o: ../hal/src/hal_atomic.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 hal/src/hal_can_async.o: ../hal/src/hal_can_async.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 hal/src/hal_delay.o: ../hal/src/hal_delay.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 hal/src/hal_flash.o: ../hal/src/hal_flash.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 hal/src/hal_gpio.o: ../hal/src/hal_gpio.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 hal/src/hal_init.o: ../hal/src/hal_init.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 hal/src/hal_io.o: ../hal/src/hal_io.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 hal/src/hal_sleep.o: ../hal/src/hal_sleep.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 hal/src/hal_spi_m_sync.o: ../hal/src/hal_spi_m_sync.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 hal/src/hal_timer.o: ../hal/src/hal_timer.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 hal/src/hal_wdt.o: ../hal/src/hal_wdt.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 hal/utils/src/utils_assert.o: ../hal/utils/src/utils_assert.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 hal/utils/src/utils_event.o: ../hal/utils/src/utils_event.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 hal/utils/src/utils_list.o: ../hal/utils/src/utils_list.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 hal/utils/src/utils_syscalls.o: ../hal/utils/src/utils_syscalls.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 hpl/can/hpl_can.o: ../hpl/can/hpl_can.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 hpl/core/hpl_core_m0plus_base.o: ../hpl/core/hpl_core_m0plus_base.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 hpl/core/hpl_init.o: ../hpl/core/hpl_init.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 hpl/divas/hpl_divas.o: ../hpl/divas/hpl_divas.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 hpl/dmac/hpl_dmac.o: ../hpl/dmac/hpl_dmac.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 hpl/gclk/hpl_gclk.o: ../hpl/gclk/hpl_gclk.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 hpl/mclk/hpl_mclk.o: ../hpl/mclk/hpl_mclk.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 hpl/nvmctrl/hpl_nvmctrl.o: ../hpl/nvmctrl/hpl_nvmctrl.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 hpl/osc32kctrl/hpl_osc32kctrl.o: ../hpl/osc32kctrl/hpl_osc32kctrl.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 hpl/oscctrl/hpl_oscctrl.o: ../hpl/oscctrl/hpl_oscctrl.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 hpl/pm/hpl_pm.o: ../hpl/pm/hpl_pm.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-hpl/rtc/hpl_rtc.o: ../hpl/rtc/hpl_rtc.c
-	@echo Building file: $<
-	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 hpl/sercom/hpl_sercom.o: ../hpl/sercom/hpl_sercom.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 hpl/tc/hpl_tc.o: ../hpl/tc/hpl_tc.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 hpl/wdt/hpl_wdt.o: ../hpl/wdt/hpl_wdt.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 ./main.o: .././main.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
-	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/rtc" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+RTT/SEGGER_RTT.o: ../RTT/SEGGER_RTT.c
+	@echo Building file: $<
+	@echo Invoking: ARM/GNU C Compiler : 6.3.1
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+RTT/SEGGER_RTT_printf.o: ../RTT/SEGGER_RTT_printf.c
+	@echo Building file: $<
+	@echo Invoking: ARM/GNU C Compiler : 6.3.1
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMC21J18A__ -DDEBUG  -I"E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../FreeRtos_Source" -I"../FreeRtos_Source/portable" -I"../FreeRtos_Source/include" -I"../APP-AFE_Task" -I"../RTT" -I"../drv" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/can" -I"../hpl/core" -I"../hpl/divas" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/nvmctrl" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/sercom" -I"../hpl/tc" -I"../hpl/wdt" -I"../hri" -I"E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
@@ -632,6 +662,13 @@ hpl/wdt/hpl_wdt.o: ../hpl/wdt/hpl_wdt.c
 
 
 # AVR32/GNU Preprocessing Assembler
+RTT/SEGGER_RTT_ASM_ARMv7M.o: ../RTT/SEGGER_RTT_ASM_ARMv7M.S
+	@echo Building file: $<
+	@echo Invoking: ARM/GNU Preprocessing Assembler : 6.3.1
+	$(QUOTE)E:\Microchip studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE) -mthumb -x assembler-with-cpp -c -mcpu=cortex-m0plus -I "E:\Microchip studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I "../Config" -I ".." -I "../examples" -I "../hal/include" -I "../hal/utils/include" -I "../hpl/can" -I "../hpl/core" -I "../hpl/divas" -I "../hpl/dmac" -I "../hpl/gclk" -I "../hpl/mclk" -I "../hpl/nvmctrl" -I "../hpl/osc32kctrl" -I "../hpl/oscctrl" -I "../hpl/pm" -I "../hpl/port" -I "../hpl/sercom" -I "../hpl/tc" -I "../hpl/wdt" -I "../hri" -I "E:\Microchip studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include"  -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)" -D__SAMC21J18A__ -Wa,-g   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 
 
 

@@ -116,14 +116,14 @@ main.d main.o: .././main.c ../atmel_start.h ../driver_init.h \
  ../hal/include/hpl_init.h ../hal/include/hal_io.h \
  ../hal/include/hal_sleep.h ../hal/include/hal_flash.h \
  ../hal/include/hpl_flash.h ../hal/include/hpl_irq.h \
- ../hal/include/hal_timer.h ../hal/utils/include/utils_list.h \
- ../hal/include/hpl_timer.h ../hal/include/hal_spi_m_sync.h \
- ../hal/include/hpl_spi_m_sync.h ../hal/include/hpl_spi.h \
- ../hal/utils/include/utils.h ../hal/include/hpl_spi_sync.h \
+ ../hal/include/hal_spi_m_sync.h ../hal/include/hpl_spi_m_sync.h \
+ ../hal/include/hpl_spi.h ../hal/utils/include/utils.h \
+ ../hal/include/hpl_spi_sync.h ../hal/include/hal_timer.h \
+ ../hal/utils/include/utils_list.h ../hal/include/hpl_timer.h \
  ../hpl/tc/hpl_tc_base.h ../hal/include/hpl_pwm.h \
  ../hal/include/hal_wdt.h ../hal/include/hpl_wdt.h \
  ../hal/include/hal_can_async.h ../hal/include/hpl_can.h \
- ../hal/include/hpl_can_async.h
+ ../hal/include/hpl_can_async.h ../drv/drv_can.h
 
 ../atmel_start.h:
 
@@ -427,12 +427,6 @@ E:\Microchip\ studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include/sam.h:
 
 ../hal/include/hpl_irq.h:
 
-../hal/include/hal_timer.h:
-
-../hal/utils/include/utils_list.h:
-
-../hal/include/hpl_timer.h:
-
 ../hal/include/hal_spi_m_sync.h:
 
 ../hal/include/hpl_spi_m_sync.h:
@@ -442,6 +436,12 @@ E:\Microchip\ studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include/sam.h:
 ../hal/utils/include/utils.h:
 
 ../hal/include/hpl_spi_sync.h:
+
+../hal/include/hal_timer.h:
+
+../hal/utils/include/utils_list.h:
+
+../hal/include/hpl_timer.h:
 
 ../hpl/tc/hpl_tc_base.h:
 
@@ -456,3 +456,5 @@ E:\Microchip\ studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include/sam.h:
 ../hal/include/hpl_can.h:
 
 ../hal/include/hpl_can_async.h:
+
+../drv/drv_can.h:

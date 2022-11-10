@@ -15,7 +15,7 @@
 #include "queue.h"
 #include "semphr.h"
 #include "event_groups.h"
-
+#include "SEGGER_RTT.h"
 
 
 #endif
