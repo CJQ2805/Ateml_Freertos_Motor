@@ -5,8 +5,7 @@
  *  Author: CJQ2805
  */ 
 
-#include "drv_can.h"
-#include <atmel_start.h>
+#include "atmel_start.h"
 
 uint32_t u32cnt = 0;
 
@@ -25,22 +24,22 @@ void CAN1_rx_callback(struct can_async_descriptor *const descr)
 	
 	if(CAN_FMT_STDID == msg.fmt)
 	{
-		u32cnt++;
+		//u32cnt++;
 		//SEGGER_RTT_printf(0,"CAN ID IS CAN_FMT_STDID \r\n");
 		//SEGGER_RTT_printf(0,"CAN ID  = %08x \r\n", msg.id);
 	}
 	else if(CAN_FMT_EXTID == msg.fmt)
 	{
-		u32cnt++;
+		//u32cnt++;
 		//SEGGER_RTT_printf(0,"CAN ID IS CAN_FMT_EXTID \r\n");
 		//SEGGER_RTT_printf(0,"CAN ID  = %08x \r\n", msg.id);
 	}
 	
-	//for (uint8_t i =0; i < msg.len; i++)
-	//{
-		//SEGGER_RTT_printf(0,"CAN1 data = %02x \r\n", msg.data[i]);	
-	//}
-	
+	for (uint8_t i =0; i < msg.len; i++)
+	{	
+		SEGGER_RTT_printf(0,"CAN1 data = %02x \r\n", msg.data[i]);	
+	}
+	SEGGER_RTT_printf(0,"len = %d \r\n", msg.len);
 	return;
 }
 
@@ -83,10 +82,12 @@ void CAN1_Init(void)
 	 */
 	can_async_register_callback(&CAN_1, CAN_ASYNC_RX_CB, (FUNC_PTR)CAN1_rx_callback);
 	filter.id   = 0x469;
-	filter.mask = 0;
+	filter.mask = 0x100;
 	can_async_set_filter(&CAN_1, 0, CAN_FMT_STDID, &filter);
 
 	filter.id   = 0x10000096;
 	filter.mask = 0;
 	can_async_set_filter(&CAN_1, 1, CAN_FMT_EXTID, &filter);
 }
+
+

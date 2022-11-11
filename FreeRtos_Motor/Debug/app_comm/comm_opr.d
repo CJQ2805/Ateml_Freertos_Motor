@@ -1,7 +1,5 @@
-examples/driver_examples.d examples/driver_examples.o: \
- ../examples/driver_examples.c ../examples/driver_examples.h \
- ../driver_init.h ../atmel_start_pins.h ../hal/include/hal_gpio.h \
- ../hal/include/hpl_gpio.h ../hal/utils/include/compiler.h \
+app_comm/comm_opr.d app_comm/comm_opr.o: ../app_comm/comm_opr.c \
+ ../FreeRtos_Source/include/FreeRTOS.h \
  e:\microchip\ studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stddef.h \
  e:\microchip\ studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stdint.h \
  e:\microchip\ studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\stdint.h \
@@ -10,6 +8,14 @@ examples/driver_examples.d examples/driver_examples.o: \
  e:\microchip\ studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\_newlib_version.h \
  e:\microchip\ studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\_intsup.h \
  e:\microchip\ studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\_stdint.h \
+ ../FreeRtos_Source/FreeRTOSConfig.h ../Config/peripheral_clk_config.h \
+ ../FreeRtos_Source/include/projdefs.h \
+ ../FreeRtos_Source/include/portable.h \
+ ../FreeRtos_Source/include/deprecated_definitions.h \
+ ../FreeRtos_Source/portable/portmacro.h \
+ ../FreeRtos_Source/include/mpu_wrappers.h ../atmel_start.h \
+ ../driver_init.h ../atmel_start_pins.h ../hal/include/hal_gpio.h \
+ ../hal/include/hpl_gpio.h ../hal/utils/include/compiler.h \
  e:\microchip\ studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stdbool.h \
  ../hal/utils/include/parts.h \
  E:\Microchip\ studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include/samc21.h \
@@ -124,26 +130,10 @@ examples/driver_examples.d examples/driver_examples.o: \
  ../hpl/tc/hpl_tc_base.h ../hal/include/hpl_pwm.h \
  ../hal/include/hal_wdt.h ../hal/include/hpl_wdt.h \
  ../hal/include/hal_can_async.h ../hal/include/hpl_can.h \
- ../hal/include/hpl_can_async.h ../FreeRtos_Source/include/FreeRTOS.h \
- ../FreeRtos_Source/FreeRTOSConfig.h ../Config/peripheral_clk_config.h \
- ../FreeRtos_Source/include/projdefs.h \
- ../FreeRtos_Source/include/portable.h \
- ../FreeRtos_Source/include/deprecated_definitions.h \
- ../FreeRtos_Source/portable/portmacro.h \
- ../FreeRtos_Source/include/mpu_wrappers.h \
- ../FreeRtos_Source/include/task.h ../FreeRtos_Source/include/list.h
+ ../hal/include/hpl_can_async.h ../FreeRtos_Source/include/task.h \
+ ../FreeRtos_Source/include/list.h
 
-../examples/driver_examples.h:
-
-../driver_init.h:
-
-../atmel_start_pins.h:
-
-../hal/include/hal_gpio.h:
-
-../hal/include/hpl_gpio.h:
-
-../hal/utils/include/compiler.h:
+../FreeRtos_Source/include/FreeRTOS.h:
 
 e:\microchip\ studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stddef.h:
 
@@ -160,6 +150,32 @@ e:\microchip\ studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\_
 e:\microchip\ studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\_intsup.h:
 
 e:\microchip\ studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\_stdint.h:
+
+../FreeRtos_Source/FreeRTOSConfig.h:
+
+../Config/peripheral_clk_config.h:
+
+../FreeRtos_Source/include/projdefs.h:
+
+../FreeRtos_Source/include/portable.h:
+
+../FreeRtos_Source/include/deprecated_definitions.h:
+
+../FreeRtos_Source/portable/portmacro.h:
+
+../FreeRtos_Source/include/mpu_wrappers.h:
+
+../atmel_start.h:
+
+../driver_init.h:
+
+../atmel_start_pins.h:
+
+../hal/include/hal_gpio.h:
+
+../hal/include/hpl_gpio.h:
+
+../hal/utils/include/compiler.h:
 
 e:\microchip\ studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stdbool.h:
 
@@ -464,22 +480,6 @@ E:\Microchip\ studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include/sam.h:
 ../hal/include/hpl_can.h:
 
 ../hal/include/hpl_can_async.h:
-
-../FreeRtos_Source/include/FreeRTOS.h:
-
-../FreeRtos_Source/FreeRTOSConfig.h:
-
-../Config/peripheral_clk_config.h:
-
-../FreeRtos_Source/include/projdefs.h:
-
-../FreeRtos_Source/include/portable.h:
-
-../FreeRtos_Source/include/deprecated_definitions.h:
-
-../FreeRtos_Source/portable/portmacro.h:
-
-../FreeRtos_Source/include/mpu_wrappers.h:
 
 ../FreeRtos_Source/include/task.h:
 

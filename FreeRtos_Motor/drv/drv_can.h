@@ -7,8 +7,10 @@
 
 #ifndef DRV_CAN_H
 #define DRV_CAN_H
-#include "atmel_start.h"
+#include "SysConfig.h"
 void CAN1_Init(void);
 
 extern uint32_t u32cnt;
+
 #endif
+

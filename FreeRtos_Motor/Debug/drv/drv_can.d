@@ -1,7 +1,6 @@
-drv/drv_can.d drv/drv_can.o: ../drv/drv_can.c ../drv/drv_can.h \
- ../atmel_start.h ../driver_init.h ../atmel_start_pins.h \
- ../hal/include/hal_gpio.h ../hal/include/hpl_gpio.h \
- ../hal/utils/include/compiler.h \
+drv/drv_can.d drv/drv_can.o: ../drv/drv_can.c ../atmel_start.h \
+ ../driver_init.h ../atmel_start_pins.h ../hal/include/hal_gpio.h \
+ ../hal/include/hpl_gpio.h ../hal/utils/include/compiler.h \
  e:\microchip\ studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stddef.h \
  e:\microchip\ studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stdint.h \
  e:\microchip\ studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\stdint.h \
@@ -125,8 +124,6 @@ drv/drv_can.d drv/drv_can.o: ../drv/drv_can.c ../drv/drv_can.h \
  ../hal/include/hal_wdt.h ../hal/include/hpl_wdt.h \
  ../hal/include/hal_can_async.h ../hal/include/hpl_can.h \
  ../hal/include/hpl_can_async.h
-
-../drv/drv_can.h:
 
 ../atmel_start.h:
 

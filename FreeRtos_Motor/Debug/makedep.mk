@@ -2,7 +2,7 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
-APP_AFETask\AFE_opr.c
+app_comm\comm_opr.c
 
 atmel_start.c
 
@@ -89,6 +89,10 @@ hpl\tc\hpl_tc.c
 hpl\wdt\hpl_wdt.c
 
 main.c
+
+Middle\CAN_CircularBuf.c
+
+Module_afe\AFE_opr.c
 
 RTT\SEGGER_RTT.c
 

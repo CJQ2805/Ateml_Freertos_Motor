@@ -1,5 +1,5 @@
-main.d main.o: .././main.c ../atmel_start.h ../driver_init.h \
- ../atmel_start_pins.h ../hal/include/hal_gpio.h \
+main.d main.o: .././main.c .././atmel_start.h .././driver_init.h \
+ .././atmel_start_pins.h ../hal/include/hal_gpio.h \
  ../hal/include/hpl_gpio.h ../hal/utils/include/compiler.h \
  e:\microchip\ studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stddef.h \
  e:\microchip\ studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stdint.h \
@@ -123,13 +123,13 @@ main.d main.o: .././main.c ../atmel_start.h ../driver_init.h \
  ../hpl/tc/hpl_tc_base.h ../hal/include/hpl_pwm.h \
  ../hal/include/hal_wdt.h ../hal/include/hpl_wdt.h \
  ../hal/include/hal_can_async.h ../hal/include/hpl_can.h \
- ../hal/include/hpl_can_async.h ../drv/drv_can.h
+ ../hal/include/hpl_can_async.h .././freertos.h
 
-../atmel_start.h:
+.././atmel_start.h:
 
-../driver_init.h:
+.././driver_init.h:
 
-../atmel_start_pins.h:
+.././atmel_start_pins.h:
 
 ../hal/include/hal_gpio.h:
 
@@ -457,4 +457,4 @@ E:\Microchip\ studio\7.0\Packs\atmel\SAMC21_DFP\1.2.176\samc21\include/sam.h:
 
 ../hal/include/hpl_can_async.h:
 
-../drv/drv_can.h:
+.././freertos.h:

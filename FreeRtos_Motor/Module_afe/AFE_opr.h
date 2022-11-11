@@ -7,5 +7,5 @@
 #ifndef AFE_OPR_H
 #define AFE_OPR_H
 
-
+void create_afe_task(void);
 #endif
